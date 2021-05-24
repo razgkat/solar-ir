@@ -1,0 +1,323 @@
+{
+	"variables": [],
+	"info": {
+		"name": "TREX",
+		"_postman_id": "c2182caa-a5f5-f955-ad31-1bb460020d7d",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "get-sites",
+			"request": {
+				"url": "http://127.0.0.1:3000/sites",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "get-site",
+			"request": {
+				"url": "http://127.0.0.1:3000/sites/1",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "add-site",
+			"request": {
+				"url": "http://127.0.0.1:3000/sites/add",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"site\": {\n\t\t\"name\": \"MySite1\",\n\t\t\"id\": 1,\n\t\t\"location\": {\n\t\t\t\"lat\": 40,\n\t\t\t\"lon\":-120\n\t\t}\n\t}\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "get-pipeline",
+			"request": {
+				"url": "http://127.0.0.1:3000/pipelines/1",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "get-pipelines",
+			"request": {
+				"url": "http://127.0.0.1:3000/pipelines",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "add-pipeline-db",
+			"request": {
+				"url": "http://127.0.0.1:3000/pipelines/add",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"pipeline\": {\n\t\t\"name\": \"MyPipeline\",\n\t\t\"id\": 1,\n\t\t\"tasks\": {\n\t\t\t\"extract\": {\n\t\t\t\t\"name\": \"NrelSolarHttpTaskExtract\",\n\t\t\t\t\"input\": {\n\t\t\t\t\t\"uri\": \"https://developer.nrel.gov/api/solar/solar_resource\",\n\t\t\t\t\t\"port\": 443,\n\t\t\t\t\t\"version\": 1,\n\t\t\t\t\t\"format\": \"json\",\n\t\t\t\t\t\"uriParameters\": {\n\t\t\t\t\t\t\"api_key\": \"DEMO_KEY\"\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t},\n\t\t\t\"transform\": {\n\t\t\t\t\"name\": \"NrelSolarFlatTaskTransform\",\n\t\t\t\t\"input\": {}\n\t\t\t},\n\t\t\t\"load\": {\n\t\t\t\t\"name\": \"NrelSolarDbTaskLoad\",\n\t\t\t\t\"input\": {\n\t\t\t\t\t\"dbService\": \"NeDB\",\n\t\t\t\t\t\"serviceArgs\": {\n\t\t\t\t\t\t\"dbName\": \"results\"\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t}\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "execute-site",
+			"request": {
+				"url": "http://127.0.0.1:3000/sites/execute",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"siteId\": 1,\n\t\"pipelineId\": 3\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "get-executions",
+			"request": {
+				"url": "http://127.0.0.1:3000/executions/",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"siteId\": 1,\n\t\"pipelineId\": 4\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "run-execution-block",
+			"request": {
+				"url": "http://127.0.0.1:3000/executions/run/6173284c-d2bb-4140-a83b-2b213813af48",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"siteId\": 1,\n\t\"pipelineId\": 4\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "add-pipeline-file-json",
+			"request": {
+				"url": "http://127.0.0.1:3000/pipelines/add",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"pipeline\": {\n\t\t\"name\": \"SaveJsonDataToFile\",\n\t\t\"id\": 2,\n\t\t\"tasks\": {\n\t\t\t\"extract\": {\n\t\t\t\t\"name\": \"NrelSolarHttpTaskExtract\",\n\t\t\t\t\"input\": {\n\t\t\t\t\t\"uri\": \"https://developer.nrel.gov/api/solar/solar_resource\",\n\t\t\t\t\t\"port\": 443,\n\t\t\t\t\t\"version\": 1,\n\t\t\t\t\t\"format\": \"json\",\n\t\t\t\t\t\"uriParameters\": {\n\t\t\t\t\t\t\"api_key\": \"DEMO_KEY\"\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t},\n\t\t\t\"transform\": {\n\t\t\t\t\"name\": \"NrelSolarFlatTaskTransform\",\n\t\t\t\t\"input\": {}\n\t\t\t},\n\t\t\t\"load\": {\n\t\t\t\t\"name\": \"NrelSolarFileTaskLoad\",\n\t\t\t\t\"input\": {\n\t\t\t\t\t\"outputFile\": \"D:/nrel-result.json\",\n\t\t\t\t\t\"format\": \"json\"\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t}\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "add-pipeline-file-csv",
+			"request": {
+				"url": "http://127.0.0.1:3000/pipelines/add",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"pipeline\": {\n\t\t\"name\": \"SaveJsonToCsvAtTheEnd\",\n\t\t\"id\": 3,\n\t\t\"tasks\": {\n\t\t\t\"extract\": {\n\t\t\t\t\"name\": \"NrelSolarHttpTaskExtract\",\n\t\t\t\t\"input\": {\n\t\t\t\t\t\"uri\": \"https://developer.nrel.gov/api/solar/solar_resource\",\n\t\t\t\t\t\"port\": 443,\n\t\t\t\t\t\"version\": 1,\n\t\t\t\t\t\"format\": \"json\",\n\t\t\t\t\t\"uriParameters\": {\n\t\t\t\t\t\t\"api_key\": \"DEMO_KEY\"\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t},\n\t\t\t\"transform\": {\n\t\t\t\t\"name\": \"NrelSolarFlatTaskTransform\",\n\t\t\t\t\"input\": {}\n\t\t\t},\n\t\t\t\"load\": {\n\t\t\t\t\"name\": \"NrelSolarFileTaskLoad\",\n\t\t\t\t\"input\": {\n\t\t\t\t\t\"outputFile\": \"D:/nrel-result.csv\",\n\t\t\t\t\t\"format\": \"csv\"\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t}\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "get-execution",
+			"request": {
+				"url": {
+					"raw": "http://127.0.0.1:3000/executions?key=47831d86-e016-4155-a31f-8142e746791a",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "3000",
+					"path": [
+						"executions"
+					],
+					"query": [
+						{
+							"key": "key",
+							"value": "47831d86-e016-4155-a31f-8142e746791a",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"siteId\": 1,\n\t\"pipelineId\": 4\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "get-executions-completed",
+			"request": {
+				"url": {
+					"raw": "http://127.0.0.1:3000/executions?status=COMPLETED",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "3000",
+					"path": [
+						"executions"
+					],
+					"query": [
+						{
+							"key": "status",
+							"value": "COMPLETED",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"siteId\": 1,\n\t\"pipelineId\": 4\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "get-execution-result",
+			"request": {
+				"url": "http://127.0.0.1:3000/executions/results/1950f9ce-3ef4-4d73-a48b-71a02e41fadf",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"siteId\": 1,\n\t\"pipelineId\": 4\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}
