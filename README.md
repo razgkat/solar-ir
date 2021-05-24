@@ -1,1 +1,1 @@
-# solar-ir
+#T-REX Solar-IR
